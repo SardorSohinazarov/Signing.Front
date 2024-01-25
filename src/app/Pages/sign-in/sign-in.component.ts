@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl,FormControlName, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { APIService } from '../../api.service';
+import { error } from 'console';
 
 @Component({
   selector: 'app-sign-in',
@@ -11,7 +12,8 @@ import { APIService } from '../../api.service';
 })
 export class SignInComponent implements OnInit {
   constructor(
-    private formBuilder:FormBuilder
+    private formBuilder:FormBuilder,
+    private apiService:APIService
     ){}
 
   loginForm!:FormGroup;
@@ -28,7 +30,15 @@ export class SignInComponent implements OnInit {
   Login(){
     if(this.loginForm.valid){
       console.log(this.loginForm.value)
-      window.alert("malades")
+      this.apiService.Login(this.loginForm.value)
+      .subscribe({
+        next:(res =>{
+          alert(res.message)
+        }),
+        error:(err =>{
+          alert(err)
+        })
+      })
     }
     else{
       window.alert("boshqatadan,davay")
