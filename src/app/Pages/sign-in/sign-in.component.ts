@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl,FormControlName, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { APIService } from '../../api.service';
-import { error } from 'console';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -13,7 +13,8 @@ import { error } from 'console';
 export class SignInComponent implements OnInit {
   constructor(
     private formBuilder:FormBuilder,
-    private apiService:APIService
+    private apiService:APIService,
+    private router:Router
     ){}
 
   loginForm!:FormGroup;
@@ -34,6 +35,7 @@ export class SignInComponent implements OnInit {
       .subscribe({
         next:(res =>{
           alert(res.message)
+          this.router.navigate([''])
         }),
         error:(err =>{
           alert(err)
