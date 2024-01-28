@@ -7,11 +7,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class APIService {
   constructor(private httpClient: HttpClient) { }
 
+  jwt = window.localStorage.getItem('jwt')
+
   Login(data:any){
     return this.httpClient.post<any>("https://localhost:7134/api/Auth/Login",data)
   }
 
   Register(data:any){
-    return this.httpClient.post<any>("",data)
+    return this.httpClient.post<any>("https://localhost:7134/api/Auth/Register",data)
   }
 }

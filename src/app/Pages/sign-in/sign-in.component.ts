@@ -34,6 +34,7 @@ export class SignInComponent implements OnInit {
       this.apiService.Login(this.loginForm.value)
       .subscribe({
         next:(res =>{
+          window.localStorage.setItem('jwt',res.message)
           alert(res.message)
           this.router.navigate([''])
         }),
