@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { User } from '../Interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -34,4 +35,10 @@ export class APIService {
     localStorage.removeItem('token')
     this.router.navigate(["/login"])
   }
+
+  getAllUsers(){
+    var hearder = new HttpHeaders({"Authorization":"Bearer "+this.getToken()})
+    return this.httpClient.get<User[]>("https://localhost:7134/api/Auth/GetAllUsers");
+  }
 }
+

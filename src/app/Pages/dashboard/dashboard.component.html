@@ -83,3 +83,16 @@
       </div>
     </div>
   </div>  
+
+
+  @for (user of users; track user.id) {
+    <div>
+      {{ user.name }}
+      {{ user.email }}
+      {{ user.phoneNumber }}
+  </div>
+    <br>
+  } @empty {
+    Empty list of users
+  }
+  
