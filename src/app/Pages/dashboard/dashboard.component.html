@@ -22,7 +22,8 @@
           <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Company</a>
         </div>
         <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-          <button (click)="LogOut()" class="text-sm font-semibold leading-6 text-gray-900">Log Out <span aria-hidden="true">&rarr;</span></button>
+          <div href="#" class="btn btn-outline-secondary text-sm font-semibold leading-6 text-gray-900">{{email}}</div>
+          <button (click)="LogOut()" class="btn btn-danger text-sm font-semibold leading-6 text-gray-900">Log Out <span aria-hidden="true">&rarr;</span></button>
         </div>
       </nav>
       <!-- Mobile menu, show/hide based on menu open state. -->
