@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { APIService } from '../../Services/api.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,4 +10,9 @@ import { Component } from '@angular/core';
 })
 export class DashboardComponent {
 
+  constructor(private api:APIService) {}
+
+  LogOut(){
+    this.api.signOut();
+  }
 }

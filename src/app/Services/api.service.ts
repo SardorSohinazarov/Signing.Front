@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class APIService {
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,private router:Router) { }
 
   jwt = window.localStorage.getItem('jwt')
 
@@ -27,5 +28,10 @@ export class APIService {
 
   isLoggedIn():boolean{
     return !! localStorage.getItem('token');
+  }
+
+  signOut(){
+    localStorage.removeItem('token')
+    this.router.navigate(["/login"])
   }
 }
