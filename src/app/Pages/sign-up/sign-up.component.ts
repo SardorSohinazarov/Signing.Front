@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { APIService } from '../../api.service';
 import { Router } from '@angular/router';
+import { APIService } from '../../Services/api.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -37,6 +37,7 @@ export class SignUpComponent {
       .subscribe({
         next:(res =>{
           alert(res.message)
+          this.apiService.storeToken(res.token)
           this.router.navigate([''])
         }),
         error:(err =>{

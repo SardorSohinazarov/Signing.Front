@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl,FormControlName, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { APIService } from '../../api.service';
 import { Router } from '@angular/router';
+import { APIService } from '../../Services/api.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -34,8 +34,8 @@ export class SignInComponent implements OnInit {
       this.apiService.Login(this.loginForm.value)
       .subscribe({
         next:(res =>{
-          window.localStorage.setItem('jwt',res.message)
           alert(res.message)
+          this.apiService.storeToken(res.token)
           this.router.navigate([''])
         }),
         error:(err =>{

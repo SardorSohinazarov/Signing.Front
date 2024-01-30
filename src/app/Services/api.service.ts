@@ -16,4 +16,16 @@ export class APIService {
   Register(data:any){
     return this.httpClient.post<any>("https://localhost:7134/api/Auth/Register",data)
   }
+
+  storeToken(token:string){
+    localStorage.setItem('token',token)
+  }
+
+  getToken(){
+    return localStorage.getItem('token')
+  }
+
+  isLoggedIn():boolean{
+    return !! localStorage.getItem('token');
+  }
 }
