@@ -37,7 +37,6 @@ export class APIService {
   }
 
   getAllUsers(){
-    var hearder = new HttpHeaders({"Authorization":"Bearer "+this.getToken()})
     return this.httpClient.get<User[]>("https://localhost:7134/api/Auth/GetAllUsers");
   }
 }

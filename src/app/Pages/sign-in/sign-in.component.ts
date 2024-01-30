@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl,FormControlName, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router,RouterLink } from '@angular/router';
 import { APIService } from '../../Services/api.service';
 
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [FormsModule,ReactiveFormsModule],
+  imports: [FormsModule,ReactiveFormsModule, RouterLink],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss'
 })
