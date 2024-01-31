@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { User } from '../Interfaces/user';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { UserStoreService } from './user-store.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +10,11 @@ import { UserStoreService } from './user-store.service';
 export class APIService {
   private payload: any;
 
-  constructor(private httpClient: HttpClient,private router:Router, private userStore:UserStoreService) 
+  constructor(private httpClient: HttpClient,private router:Router) 
   {
     this.payload = this.decodeToken();
 
-    console.log(this.payload)
-
-    this.userStore.setEmail(this.payload.email)
+    // console.log(this.payload)
   }
 
   Login(data:any){
@@ -28,20 +25,20 @@ export class APIService {
     return this.httpClient.post<any>("https://localhost:7134/api/Auth/Register",data)
   }
 
-  storeToken(token:string){
-    localStorage.setItem('token',token)
+  storeAccessToken(token:string){
+    localStorage.setItem('AccessToken',token)
   }
 
   getToken(){
-    return localStorage.getItem('token')
+    return localStorage.getItem('AccessToken')
   }
 
   isLoggedIn():boolean{
-    return !! localStorage.getItem('token');
+    return !! localStorage.getItem('AccessToken');
   }
 
   signOut(){
-    localStorage.removeItem('token')
+    localStorage.removeItem('AccessToken')
     this.router.navigate(["/login"])
   }
 
@@ -58,7 +55,7 @@ export class APIService {
 
   getEmail(){
     if(this.payload)
-    return this.payload.Email;
+      return this.payload.Email;
   }
 }
 

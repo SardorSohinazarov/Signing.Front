@@ -37,7 +37,6 @@ export class SignUpComponent {
       .subscribe({
         next:(res =>{
           alert(res.message)
-          this.apiService.storeToken(res.token)
           this.router.navigate([''])
         }),
         error:(err =>{

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { APIService } from '../../Services/api.service';
 import { User } from '../../Interfaces/user';
-import { UserStoreService } from '../../Services/user-store.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,18 +12,14 @@ import { UserStoreService } from '../../Services/user-store.service';
 export class DashboardComponent implements OnInit{
   public email:string = "";
   users!:User[];
-  constructor(private api:APIService, private userStore:UserStoreService) {}
+  constructor(private api:APIService) {}
   ngOnInit(): void {
     this.api.getAllUsers()
       .subscribe(res =>{
         this.users = res
       })
 
-    this.userStore.getEmail()
-    .subscribe(val=>{
-      var e = this.api.getEmail();
-      this.email = val || e;
-    });
+    this.email = this.api.getEmail();
   }
 
   LogOut(){
