@@ -35,7 +35,7 @@ export class SignInComponent implements OnInit {
       .subscribe({
         next:(res =>{
           alert(res.message)
-          this.apiService.storeAccessToken(res.accessToken)
+          this.apiService.storeToken(res.accessToken,res.refreshToken)
           this.router.navigate([''])
         }),
         error:(err =>{
